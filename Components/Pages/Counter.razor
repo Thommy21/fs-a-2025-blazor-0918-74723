@@ -1,0 +1,29 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+@if (!String.IsNullOrEmpty(myName))
+{
+    <p role="status">Your name is @myName</p>
+}
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="SetName">Set Name</button>
+
+@code {
+    private int currentCount = 0;
+    private string myName = "";
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    private void SetName()
+    {
+         myName = "Thomas Paredes";
+    }
+}
