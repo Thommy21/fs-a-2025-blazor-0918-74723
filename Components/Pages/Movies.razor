@@ -1,0 +1,56 @@
+﻿@page "/movie"
+
+@rendermode InteractiveServer
+
+@inject MovieRepository MovieRepo
+
+<h3 class="mb-3">Racing & Action Movies</h3>
+
+@if (movies.Count == 0)
+{
+    <p><em>Loading Movies...</em></p>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated"
+             role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+             style="width: 75%">
+        </div>
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in movies)
+            {
+                <tr>
+                    <td>@movie.Id</td>
+                    <td>@movie.Title</td>
+                    <td>@movie.Director</td>
+                    <td>@movie.ReleaseYear</td>
+                    <td>@movie.Genre</td>
+                    <td>@movie.Rating.ToString("0.0")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Movie> movies = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500); // simulating API delay
+        movies = MovieRepo.GetMovies();
+    }
+}
