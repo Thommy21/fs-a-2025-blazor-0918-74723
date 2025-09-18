@@ -1,11 +1,11 @@
 using fs_a_2025_blazor_0918_74723.Components;
-
+using fs_a_2025_blazor_0918_74723.Models.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
+builder.Services.AddSingleton<CarRepository>();
 builder.Services.AddSingleton<MovieRepository>();
 var app = builder.Build();
 

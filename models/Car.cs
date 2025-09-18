@@ -1,5 +1,5 @@
-﻿
-public class Cars
+﻿namespace fs_a_2025_blazor_0918_74723.Models;
+public class Car
 {
     public int Id { get; set; }            // Unique identifier
     public string Make { get; set; }       // e.g. Toyota, BMW
